@@ -3,8 +3,8 @@
 
 class Magazin
 {
-    Angajat a;
-    Produs p;
+    Angajat *a;
+    Produs *p;
     int nr_angajati;
 
 public:

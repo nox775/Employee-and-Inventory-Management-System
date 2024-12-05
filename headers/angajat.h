@@ -2,22 +2,26 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <exception>
+#pragma once
+#include "persoana.h"
 
 using namespace std;
 
-class Angajat
+class Angajat : public Persoana
 {
-    int ID = "";      // trebuie sa fie unic
-    string nume = ""; // 3-10 caractere
-    string prenume = "";
-    char CNP[13] = "";         // CNP valid
-    int data_angajare[3] = ""; // ZZ_LL_AAAA
+    string tipAngajat = "";
+    int ID = 0;                       // trebuie sa fie unic
+    int data_angajare[3] = {0, 0, 0}; // ZZ_LL_AAAA
 public:
-    static int nr_angajati = 0;
+    static int nr_angajati;
 
     Angajat() = default;
-    Angajat(int, string, string, char *, int *);
+    Angajat(string, int, string, string, string, int *);
 
-    int getSalariu(); // returneaza salariul unui angajat
-    int getVechime(); // vechimea unui angajat in firma
-}
+    void afisare() const;
+
+    void Demisie();
+    int getSalariu() const; // returneaza salariul unui angajat
+    int getVechime() const; // vechimea unui angajat in firma
+};
