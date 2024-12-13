@@ -3,8 +3,8 @@
 #include <string>
 #include <cstring>
 #include <exception>
-#pragma once
 #include "persoana.h"
+#pragma once
 
 using namespace std;
 
@@ -17,11 +17,12 @@ public:
     static int nr_angajati;
 
     Angajat() = default;
-    Angajat(string, int, string, string, string, int *);
+    Angajat(string, int, int *, string, string, string);
 
     void afisare() const;
 
     void Demisie();
     int getSalariu() const; // returneaza salariul unui angajat
     int getVechime() const; // vechimea unui angajat in firma
+    ~Angajat();
 };

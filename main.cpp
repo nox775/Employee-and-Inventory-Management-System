@@ -11,8 +11,12 @@ int main()
     char CNP[14] = "1861003013477";       // CNP valid
     int data_angajare[3] = {21, 3, 2020}; // ZZ_LL_AAAA
     string tip = "Manager";
-    Angajat a(tip, ID, nume, prenume, CNP, data_angajare);
+    Angajat a(tip, ID, data_angajare, nume, prenume, CNP);
     a.afisare();
+
+    time_t t;
+    cout << endl
+         << time(NULL);
 
     return 0;
 }

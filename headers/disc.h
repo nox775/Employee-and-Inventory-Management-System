@@ -6,7 +6,15 @@ class Disc : public Produs
 protected:
     string tip = "";
     string casa_de_discuri = "";
-    time_t data_lansare;
-    string nume_trupa;
-    string nume_album;
+    string data_lansare = ""; //->>lucreaza la asta
+    string nume_trup = "";
+    string nume_album = "";
+
+public:
+    Disc() = default;
+    Disc(string, int, string, float, string, string, string, string, string);
+
+    float getPret();
+
+    ~Disc();
 };

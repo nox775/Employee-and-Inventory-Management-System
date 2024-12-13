@@ -2,8 +2,7 @@
 
 int Angajat::nr_angajati = 0;
 
-Angajat::Angajat(string tip, int ID_var, string nume_var, string prenume_var, string CNP_var,
-                 int *data_angajare_var) : Persoana(nume_var, prenume_var, CNP_var), ID(ID_var), tipAngajat(tip)
+Angajat::Angajat(string tip, int ID_var, int *data_angajare_var, string nume_var, string prenume_var, string CNP_var) : Persoana(nume_var, prenume_var, CNP_var), ID(ID_var), tipAngajat(tip)
 {
     if (this->getVarsta() < 18)
         throw std::invalid_argument("Persoana nu are 18 ani");
@@ -40,9 +39,18 @@ int Angajat::getSalariu() const
     salariu = salariu + 100 * (this)->getVechime();
 
     if (tipAngajat == "Manager")
+    {
         salariu = salariu * 1.25;
+    }
     if (tipAngajat == "Asistent")
+    {
         salariu = salariu * 0.75;
+        //  if()
+    }
+    if (tipAngajat == "Operator")
+    {
+        salariu = salariu * 0.75;
+    }
     // mai este de lucrat aici
 
     return salariu;
@@ -51,16 +59,18 @@ int Angajat::getSalariu() const
 void Angajat::afisare() const
 {
     cout << "--------------" << endl;
-    cout << "Nume: " << nume << endl;
-    cout << "Prenume: " << prenume << endl;
+    Persoana::afisare();
     cout << "Functie: " << tipAngajat << endl;
     cout << "ID angajat: " << ID << endl;
-    cout << "CNP: " << CNP << endl;
+
     cout << "Salariu: " << (this)->getSalariu() << endl;
     cout << "--------------" << endl;
 }
 
 void Angajat::Demisie()
 {
+    cout << "Angajatul cu ID " << ID << " a demisionat." << endl;
     nr_angajati--;
 }
+
+Angajat::~Angajat() {};

@@ -20,15 +20,18 @@ int *Persoana::getDataNasterii() const
 {
 
     int an, luna, zi;
-    if ((int)CNP[0] == 1 || (int)CNP[0] == 2)
+    if (stoi(CNP.substr(0, 1)) == 1 || stoi(CNP.substr(0, 1)) == 2)
         an = 1900;
     else
         an = 2000;
-    an = an + ((int)CNP[1]) * 10 + (int)CNP[2];
-    luna = ((int)CNP[3]) * 10 + (int)CNP[4];
-    zi = ((int)CNP[5]) * 10 + (int)CNP[6];
+    an = an + stoi(CNP.substr(1, 2));
+    luna = stoi(CNP.substr(3, 2));
+    zi = stoi(CNP.substr(5, 2));
 
-    int data_nasterii[3] = {zi, luna, an};
+    int *data_nasterii = new int[3];
+    data_nasterii[0] = zi;
+    data_nasterii[1] = luna;
+    data_nasterii[2] = an;
     return data_nasterii;
 }
 
@@ -56,4 +59,13 @@ int Persoana::getVarsta() const
     }
 
     return varsta;
+}
+
+Persoana::~Persoana() {};
+
+void Persoana::afisare() const
+{
+    cout << "Nume: " << nume << endl;
+    cout << "Prenume: " << prenume << endl;
+    cout << "CNP: " << CNP << endl;
 }

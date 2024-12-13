@@ -3,6 +3,7 @@
 #include <string>
 #include <cstring>
 #include <exception>
+#include <ctime>
 
 using namespace std;
 
@@ -21,4 +22,6 @@ public:
     int getVarsta() const;
     void setNume(string);
     int *getDataNasterii() const;
+
+    virtual ~Persoana();
 };
