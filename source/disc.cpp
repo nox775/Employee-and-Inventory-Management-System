@@ -20,3 +20,18 @@ float Disc::getPret()
     pret = pret + 5;
     return pret;
 }
+
+void Disc::afisareInfo() const
+{
+    Produs::afisareInfo();
+    cout << "Tip Produs: Disc" << endl;
+    cout << "Tip Disc: " << tip << endl;
+    cout << "Nume trupa: " << nume_trup << endl;
+    cout << "Nume album: " << nume_album << endl;
+    cout << "Data de lansare: " << data_lansare << endl;
+    cout << "Casa de discuri: " << casa_de_discuri << endl;
+}
+void Disc::PretFinal()
+{
+    cout << "Pret final (+livrare): " << (this)->getPret() << endl;
+}

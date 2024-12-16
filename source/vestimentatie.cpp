@@ -10,3 +10,15 @@ float Vestimentatie::getPret()
 {
     return pret_baza + 20;
 }
+
+void Vestimentatie::afisareInfo() const
+{
+    Produs::afisareInfo();
+    cout << "Tip: Vestimentatie" << endl;
+    cout << "Culoare: " << culoare << endl;
+    cout << "Marca: " << marca << endl;
+}
+void Vestimentatie::PretFinal()
+{
+    cout << "Pret final (+livrare): " << (this)->getPret() << endl;
+}

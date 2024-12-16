@@ -26,3 +26,15 @@ float Disc_Vint::getPret()
     int pret = pret_baza + raritate * 15 + 5;
     return pret;
 }
+
+void Disc_Vint::afisareInfo() const
+{
+    Disc::afisareInfo();
+    cout << "Tip produs: Disc Vintage" << endl;
+    cout << "Raritate: " << raritate << endl;
+    if (mint == true)
+        cout << "Discul este mint" << endl;
+    else
+        cout << "Discul nu este mint" << endl;
+}
+void PretFinal();

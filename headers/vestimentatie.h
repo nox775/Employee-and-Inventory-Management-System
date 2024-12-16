@@ -10,5 +10,8 @@ public:
     Vestimentatie(string, int, string, float, string, string);
     ~Vestimentatie();
 
+    void afisareInfo() const;
+    void PretFinal();
+
     float getPret();
 };

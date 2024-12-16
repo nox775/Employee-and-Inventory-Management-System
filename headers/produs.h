@@ -16,7 +16,14 @@ public:
     Produs() = default;
     Produs(string, int, string, float);
 
+    virtual void afisareInfo() const;
+    void setCantitate(string, int);
+    // stergere ? - mai vedem
+
     virtual float getPret() = 0;
+    float getPret_de_baza();
+
+    virtual void PretFinal();
 
     virtual ~Produs();
 };

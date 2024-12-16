@@ -9,6 +9,8 @@ public:
     Disc_Vint() = default;
     Disc_Vint(string, int, string, float, string, string, string, string, string, float, bool);
 
+    void afisareInfo() const;
+    void PretFinal();
     ~Disc_Vint();
 
     float getPret();
