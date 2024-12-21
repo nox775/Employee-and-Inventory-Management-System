@@ -1,7 +1,6 @@
 #include "../headers/comanda.h"
 
-Comanda::Comanda(string data_plasare_v, int durata_solutionare_v, int nr_produse_v, Produs **p_v) : data_plasare(data_plasare_v),
-                                                                                                    durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v)
+Comanda::Comanda(time_t data_plasare_v, int durata_solutionare_v, int nr_produse_v, vector<Produs *> p_v) : durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v)
 {
     int nr_disc = 0, nr_vestim = 0;
     float val_comanda = 0;
@@ -31,6 +30,27 @@ Comanda::Comanda(string data_plasare_v, int durata_solutionare_v, int nr_produse
             break;
         }
     }
+    if (cerinte_respectate == false)
+    {
+        cout << "Comanda nu a putu fi alocata" << endl;
+        throw std::invalid_argument("Comenzile nu respecta cerintele necesare");
+    }
+    else
+    {
+        for (int i = 0; i < nr_produse; i++)
+        {
+            p[i] = p_v[i];
+        }
+    }
+    if (difftime(time(NULL), data_plasare_v) > durata_solutionare)
+    {
+        cout << "Comanda a depasit durata de solutionare" << endl;
+        throw std::invalid_argument("Timp prea lung");
+    }
+    else
+    {
+        data_plasare = data_plasare_v;
+    }
 
     /// mai lucreaza aici;
 }
@@ -42,5 +62,8 @@ Comanda &Comanda::operator=(const Comanda &)
 }
 Comanda::~Comanda()
 {
-    delete[] p;
+    for (Produs *produs : p)
+    {
+        delete produs;
+    }
 }

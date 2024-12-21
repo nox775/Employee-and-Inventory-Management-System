@@ -4,6 +4,7 @@
 #include <cstring>
 #include <exception>
 #include "persoana.h"
+#include <ctime>
 #pragma once
 
 using namespace std;
@@ -11,15 +12,17 @@ using namespace std;
 class Angajat : public Persoana
 {
     string tipAngajat = "";
-    int ID = 0;                       // trebuie sa fie unic
-    int data_angajare[3] = {0, 0, 0}; // ZZ_LL_AAAA
+    int ID = 0;                        // trebuie sa fie unic
+    time_t data_angajare = time(NULL); // ZZ_LL_AAAA
 public:
     static int nr_angajati;
 
     Angajat() = default;
-    Angajat(string, int, int *, string, string, string);
+    Angajat(string, int, time_t, string, string, string);
 
     void afisare() const;
+
+    int getID();
 
     void Demisie();
     int getSalariu() const; // returneaza salariul unui angajat

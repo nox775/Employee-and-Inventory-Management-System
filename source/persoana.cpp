@@ -2,16 +2,36 @@
 
 Persoana::Persoana(string nume_var, string prenume_var, string CNP_var)
 {
-    if (nume_var.length() <= 3 || nume_var.length() >= 30)
-        throw std::out_of_range("Nume are trebuie sa aibaa intre 3 si 30 de caractere");
-    if (prenume_var.length() <= 3 || prenume_var.length() >= 30)
-        throw std::out_of_range("Prenume are trebuie sa aibaa intre 3 si 30 de caractere");
+    try
+    {
+        if (nume_var.length() <= 3 || nume_var.length() >= 30)
+            throw std::out_of_range("Nume are trebuie sa aibaa intre 3 si 30 de caractere");
+    }
+    catch (const std::out_of_range &e)
+    {
+        std::cerr << "Caught out_of_range error: " << e.what() << std::endl;
+    }
+    try
+    {
+        if (prenume_var.length() <= 3 || prenume_var.length() >= 30)
+            throw std::out_of_range("Prenume are trebuie sa aibaa intre 3 si 30 de caractere");
+    }
+    catch (const std::out_of_range &e)
+    {
+        std::cerr << "Caught out_of_range error: " << e.what() << std::endl;
+    }
 
     nume = nume_var;
     prenume = prenume_var;
-
-    if (CNP_var.length() != 13)
-        throw std::invalid_argument("CNP trebuie sa aiba 13 caracter si sa fie de forma S AA LL	ZZ JJ NNN C");
+    try
+    {
+        if (CNP_var.length() != 13)
+            throw std::invalid_argument("CNP trebuie sa aiba 13 caracter si sa fie de forma S AA LL	ZZ JJ NNN C");
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << "Caught invalid_argument error: " << e.what() << std::endl;
+    }
 
     CNP = CNP_var;
 }
@@ -42,7 +62,7 @@ void Persoana::setNume(string nume_nou)
 
 int Persoana::getVarsta() const
 {
-    // poate fi templete
+
     int *data_nasterii = (this)->getDataNasterii();
     int ziua_curenta = 5, luna_curenta = 12, anul_curent = 2024;
     int varsta;
