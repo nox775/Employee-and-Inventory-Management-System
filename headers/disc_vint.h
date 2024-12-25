@@ -1,4 +1,5 @@
 #include "disc.h"
+#pragma once
 
 class Disc_Vint : public Disc
 {
@@ -7,7 +8,7 @@ class Disc_Vint : public Disc
 
 public:
     Disc_Vint() = default;
-    Disc_Vint(string, int, string, float, string, string, string, string, string, float, bool);
+    Disc_Vint(string, int, int, float, string, string, time_t, string, string, float, bool);
 
     void afisareInfo() const;
     void PretFinal();

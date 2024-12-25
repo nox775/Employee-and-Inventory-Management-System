@@ -11,7 +11,7 @@ using namespace std;
 
 class Angajat : public Persoana
 {
-    string tipAngajat = "";
+    string tipAngajat = "";            // Managaer , Operator , Asistent
     int ID = 0;                        // trebuie sa fie unic
     time_t data_angajare = time(NULL); // ZZ_LL_AAAA
 public:
@@ -27,5 +27,6 @@ public:
     void Demisie();
     int getSalariu() const; // returneaza salariul unui angajat
     int getVechime() const; // vechimea unui angajat in firma
+    string getTip() const;
     ~Angajat();
 };

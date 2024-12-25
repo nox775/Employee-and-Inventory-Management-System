@@ -1,23 +1,26 @@
 #include "../headers/disc_vint.h"
 #include <exception>
 using namespace std;
-Disc_Vint::Disc_Vint(string nume_var, int cantitate_var, string cod_var, float pret_baza_var,
-                     string tip_var,
-                     string casa_de_discuri_var,
-                     string data_lansare_var,
-                     string nume_trup_var,
-                     string nume_album_var,
-                     float raritate_var, bool mint_var) : Disc(nume_var, cantitate_var, cod_var, pret_baza_var,
-                                                               tip_var,
-                                                               casa_de_discuri_var,
-                                                               data_lansare_var,
-                                                               nume_trup_var,
-                                                               nume_album_var),
-                                                          mint(mint_var), raritate(raritate_var)
+
+Disc_Vint::Disc_Vint(string nume_var, int cantitate_var, int cod_var, float pret_baza_var,
+                     string tip_var, string casa_de_discuri_var, time_t data_lansare_var,
+                     string nume_trup_var, string nume_album_var, float raritate_var, bool mint_var)
+    : Disc(nume_var, cantitate_var, cod_var, pret_baza_var, tip_var, casa_de_discuri_var,
+           data_lansare_var, nume_trup_var, nume_album_var),
+      raritate(raritate_var), mint(mint_var)
 {
-    if (raritate > 5 || raritate < 1)
-        throw std::out_of_range("Raritatea trebuie sa fie cuprinsa intre 1 si 5");
-}
+    try
+    {
+        if (raritate < 1 || raritate > 5)
+        {
+            throw std::out_of_range("Raritatea trebuie sa fie cuprinsa intre 1 si 5");
+        }
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+};
 
 Disc_Vint::~Disc_Vint() {};
 
@@ -30,11 +33,13 @@ float Disc_Vint::getPret()
 void Disc_Vint::afisareInfo() const
 {
     Disc::afisareInfo();
-    cout << "Tip produs: Disc Vintage" << endl;
     cout << "Raritate: " << raritate << endl;
     if (mint == true)
         cout << "Discul este mint" << endl;
     else
         cout << "Discul nu este mint" << endl;
 }
-void PretFinal();
+void Disc_Vint::PretFinal()
+{
+    cout << "Pret final (+livrare): " << (this)->getPret() << endl;
+}

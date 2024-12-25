@@ -4,7 +4,7 @@ Persoana::Persoana(string nume_var, string prenume_var, string CNP_var)
 {
     try
     {
-        if (nume_var.length() <= 3 || nume_var.length() >= 30)
+        if (nume_var.length() < 3 || nume_var.length() > 30)
             throw std::out_of_range("Nume are trebuie sa aibaa intre 3 si 30 de caractere");
     }
     catch (const std::out_of_range &e)
@@ -13,7 +13,7 @@ Persoana::Persoana(string nume_var, string prenume_var, string CNP_var)
     }
     try
     {
-        if (prenume_var.length() <= 3 || prenume_var.length() >= 30)
+        if (prenume_var.length() < 3 || prenume_var.length() > 30)
             throw std::out_of_range("Prenume are trebuie sa aibaa intre 3 si 30 de caractere");
     }
     catch (const std::out_of_range &e)

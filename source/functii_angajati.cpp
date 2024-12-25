@@ -1,6 +1,38 @@
 #include "../headers/functii_angajati.h"
 #include <fstream>
 
+bool verificare_functionare_magazin(vector<Angajat> employ)
+{
+    const string a = "Manager", b = "Asistent", c = "Operator";
+    int count_a = 0, count_b = 0, count_c = 0;
+    for (int i = 0; i < employ.size(); i++)
+    {
+        if (employ[i].getTip() == a)
+            count_a++;
+        else if (employ[i].getTip() == b)
+            count_b++;
+        else if (employ[i].getTip() == c)
+            count_c++;
+    }
+    if (count_a == 1 && count_c >= 3 && count_b == 1)
+    {
+
+        return true;
+    }
+    else
+    {
+        try
+        {
+            throw std::invalid_argument("Dacă magazinul nu are: un manager, minim 3 operatori de comenzi, și un asistent, nu poate functiona.");
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        return false;
+    }
+}
+
 time_t convertStringToTimeT(const std::string &dateStr)
 {
     std::tm tm = {};
@@ -12,8 +44,8 @@ time_t convertStringToTimeT(const std::string &dateStr)
         throw std::invalid_argument("Invalid date format or values: " + dateStr);
     }
 
-    tm.tm_mon -= 1;     // Convert to 0-based month
-    tm.tm_year -= 1900; // Convert year to years since 1900
+    tm.tm_mon -= 1;
+    tm.tm_year -= 1900;
     return std::mktime(&tm);
 }
 
@@ -45,6 +77,18 @@ void initAngajati(vector<Angajat> &persoane, string filename)
         time_t data_angajare = convertStringToTimeT(buffer_time);
 
         persoane.push_back(Angajat(tip, ID, data_angajare, nume, prenume, CNP));
+    }
+    bool ok = verificare_functionare_magazin(persoane);
+    if (ok == false)
+    {
+        try
+        {
+            throw std::invalid_argument("Fisierul nu are o componenta buna");
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
 }
 
@@ -157,4 +201,16 @@ void stergereAngajat(vector<Angajat> &employ)
             employ[i].Demisie();
             employ.erase(employ.begin() + i);
         }
+    bool ok = verificare_functionare_magazin(employ);
+    if (ok == false)
+    {
+        try
+        {
+            throw std::invalid_argument("Ai demisionat o persoana importanta => Magazinul nu  are destui angajati pentru a functiona");
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+    }
 }

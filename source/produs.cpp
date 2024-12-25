@@ -1,6 +1,8 @@
 #include "../headers/produs.h"
 
-Produs::Produs(string nume_var, int cantitate_var, string cod_var, float pret_baza_var) : nume(nume_var), cantiate(cantitate_var), cod(cod_var), pret_baza(pret_baza_var) {};
+int Produs::nr_produse_stoc = 0;
+
+Produs::Produs(string nume_var, int cantitate_var, int cod_var, float pret_baza_var) : nume(nume_var), cantiate(cantitate_var), cod(cod_var), pret_baza(pret_baza_var) { nr_produse_stoc++; };
 
 Produs::~Produs() {};
 
@@ -13,13 +15,19 @@ void Produs::afisareInfo() const
     cout << "Pret de baza: " << pret_baza << endl;
 }
 
-void Produs::setCantitate(string cod_identificare, int cantitate_nou)
+void Produs::setCantitate(int cantitate_nou)
 {
-    if (cod == cod_identificare)
+    try
     {
-        cantiate = cantitate_nou;
+        if (cantitate_nou >= 0)
+            cantiate = cantitate_nou;
+        else
+            throw std::invalid_argument("Cantiatea trebuie sa fie pzoitiva");
     }
-    // mai avem de lucru - posibil nu am inteles cum trebuie;
+    catch (const exception &e)
+    {
+        cerr << e.what() << endl;
+    }
 }
 
 void Produs::PretFinal()
@@ -30,4 +38,9 @@ void Produs::PretFinal()
 float Produs::getPret_de_baza()
 {
     return pret_baza;
+}
+
+int Produs::getCod() const
+{
+    return cod;
 }

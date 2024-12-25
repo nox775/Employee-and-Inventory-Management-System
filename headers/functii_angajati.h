@@ -6,6 +6,7 @@
 
 using namespace std;
 
+bool verificare_functionare_magazin(vector<Angajat>);
 static time_t convertStringToTimeT(const string &);
 void initAngajati(vector<Angajat> &, string);
 void addAngajat(vector<Angajat> &);

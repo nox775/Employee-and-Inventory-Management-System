@@ -6,13 +6,13 @@ class Disc : public Produs
 protected:
     string tip = "";
     string casa_de_discuri = "";
-    string data_lansare = ""; //->>lucreaza la asta
+    time_t data_lansare = time(NULL); //->>lucreaza la asta
     string nume_trup = "";
     string nume_album = "";
 
 public:
     Disc() = default;
-    Disc(string, int, string, float, string, string, string, string, string);
+    Disc(string, int, int, float, string, string, time_t, string, string);
 
     float getPret();
 

@@ -96,7 +96,7 @@ void Angajat::afisare() const
 
 void Angajat::Demisie()
 {
-    cout << "Angajatul cu ID " << ID << " a demisionat." << endl;
+    cout << "Angajatul cu ID " << ID << " a parasit compania." << endl;
     nr_angajati--;
 }
 
@@ -105,4 +105,9 @@ Angajat::~Angajat() {};
 int Angajat::getID()
 {
     return ID;
+}
+
+string Angajat::getTip() const
+{
+    return tipAngajat;
 }
