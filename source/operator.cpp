@@ -16,6 +16,7 @@ Operator::Operator(string tip, int ID_var, time_t data_angajare_var, string nume
     {
         std::cerr << e.what() << '\n';
     }
+    Angajat::nr_angajati--;
 }
 
 void Operator::afisare() const

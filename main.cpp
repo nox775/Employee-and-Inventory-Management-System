@@ -4,6 +4,7 @@
 #include "./headers/functii_comenzi.h"
 #include "./headers/functii_stoc.h"
 #include <fstream>
+#include <limits>
 
 using namespace std;
 
@@ -24,11 +25,11 @@ int main()
     string fileName3 = "./data_in/info_comenzi.in"; // Datele au fost generate cu AI
     initComenzi(comenzi, fileName3);
 
-    startOperatori(comenzi, operatori, stoc);
+    // startOperatori(comenzi, operatori, stoc);
 
     // MENIU
-    bool meniu_functionare = false;
-    int optiune;
+    bool meniu_functionare = true;
+    int optiune = 0;
 
     while (meniu_functionare != false)
     {
@@ -44,6 +45,14 @@ int main()
         cout << "--------------" << endl;
 
         cin >> optiune;
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Optiune invalida! Te rog sa alegi o optiune valida." << endl;
+            continue;
+        }
+
         if (optiune == 0)
         {
             cout << "Ati iesit din meniu principal" << endl;
@@ -65,12 +74,20 @@ int main()
                 cout << "--------------" << endl;
                 cout << "Intoarcere MENIU PRINCIPAL(0)" << endl;
                 cout << "--------------" << endl;
+
                 int optiune_secundara;
                 cin >> optiune_secundara;
 
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Optiune invalida! Te rog sa alegi o optiune valida." << endl;
+                    continue;
+                }
+
                 if (optiune_secundara == 0) // Iesire din meniu angajat
                     meniu = true;
-
                 else if (optiune_secundara == 1) // Adaugare Angajat;
                 {
 
@@ -116,6 +133,14 @@ int main()
                 int optiune_secundara;
                 cin >> optiune_secundara;
 
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Optiune invalida! Te rog sa alegi o optiune valida." << endl;
+                    continue;
+                }
+
                 if (optiune_secundara == 0) // Iesire din meniu stoc
                     meniu = true;
 
@@ -159,6 +184,14 @@ int main()
 
                 int optiune_secundara;
                 cin >> optiune_secundara;
+
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Optiune invalida! Te rog sa alegi o optiune valida." << endl;
+                    continue;
+                }
 
                 if (optiune_secundara == 0) // Iesire din meniu stoc
                     meniu = true;
