@@ -28,5 +28,8 @@ public:
     virtual void PretFinal();
     int getCod() const;
 
-    virtual ~Produs();
+    friend bool operator==(const Produs &, const Produs &);
+    int getCantitate() const;
+
+        virtual ~Produs();
 };

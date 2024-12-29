@@ -89,3 +89,16 @@ void Persoana::afisare() const
     cout << "Prenume: " << prenume << endl;
     cout << "CNP: " << CNP << endl;
 }
+
+string Persoana::getNume() const
+{
+    return nume;
+}
+string Persoana::getPrenume() const
+{
+    return prenume;
+}
+string Persoana::getCNP() const
+{
+    return CNP;
+}

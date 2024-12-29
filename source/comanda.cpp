@@ -2,70 +2,55 @@
 
 int Comanda::nr_comenzi = 0;
 
-Comanda::Comanda(time_t data_plasare_v, time_t durata_solutionare_v, int nr_produse_v, vector<Produs *> p_v) : durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v)
+Comanda::Comanda(time_t data_plasare_v, time_t durata_solutionare_v, int nr_produse_v, vector<Produs *> p_v)
+    : durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v), data_plasare(data_plasare_v)
 {
+    id_comanda++;
     nr_comenzi++;
     int nr_disc = 0, nr_vestim = 0;
     float val_comanda = 0;
     bool cerinte_respectate = true;
 
-    for (int i = 0; i < nr_produse; i++) // Verific daca comanda poate fi procesata;
-    {
-        if (typeid(p_v[i]).name() == "Vestimentatie")
-            nr_vestim++;
-        if (typeid(p_v[i]).name() == "Disc" || typeid(p_v[i]).name() == "Disc_Vint")
-        {
-            nr_disc++;
-        }
-        if (nr_disc >= 4 || nr_vestim >= 6)
-        {
-            cout << "Comanda nu poate fi plasata" << endl;
-            cout << "---Numarul maxim de obiecte depasit---" << endl;
-            cerinte_respectate = false;
-            break;
-        }
-        val_comanda = val_comanda + (p_v[i])->getPret_de_baza();
-        if (val_comanda > 100)
-        {
-            cout << "Comanda nu poate fi plasata" << endl;
-            cout << "---Valaore comanda a fost depasit (100)---" << endl;
-            cerinte_respectate = false;
-            break;
-        }
-    }
     try
     {
-        if (cerinte_respectate == false)
+        for (int i = 0; i < nr_produse; i++)
         {
-            cout << "Comanda nu a putu fi alocata" << endl;
-
-            throw std::invalid_argument("Comenzile nu respecta cerintele necesare");
+            if (typeid(*p_v[i]).name() == typeid(Vestimentatie).name())
+            {
+                nr_vestim++;
+            }
+            if (typeid(*p_v[i]).name() == typeid(Disc).name() || typeid(*p_v[i]).name() == typeid(Disc_Vint).name())
+            {
+                nr_disc++;
+            }
+            if (nr_disc >= 4 || nr_vestim >= 6)
+            {
+                cerinte_respectate = false;
+                throw std::invalid_argument("Numarul maxim de obiecte depasit.");
+            }
+            val_comanda += p_v[i]->getPret_de_baza();
         }
 
-        else
+        if (val_comanda < 100)
         {
-            for (int i = 0; i < nr_produse; i++)
-            {
-                p.push_back(p_v[i]);
-            }
+            throw std::invalid_argument("Valoarea comenzii este sub limita minima de 100.");
+        }
+        if (difftime(time(NULL), data_plasare_v) > durata_solutionare)
+        {
+            throw std::invalid_argument("Durata de solutionare a fost depasita.");
+        }
+        for (int i = 0; i < nr_produse; i++)
+        {
+            p.push_back(p_v[i]);
         }
     }
     catch (const std::invalid_argument &e)
     {
-        std::cerr << "Caught invalid_argument error: " << e.what() << std::endl;
+        std::cerr << "Eroare: " << e.what() << std::endl;
     }
-    if (difftime(time(NULL), data_plasare_v) > durata_solutionare)
-    {
-        cout << "Comanda a depasit durata de solutionare" << endl;
-        throw std::invalid_argument("Timp prea lung");
-    }
-    else
-    {
-        data_plasare = data_plasare_v;
-    }
-
-    /// mai lucreaza aici;
+    id_comanda++;
 }
+
 Comanda::Comanda(const Comanda &other)
 {
     data_plasare = other.data_plasare;
@@ -74,79 +59,148 @@ Comanda::Comanda(const Comanda &other)
 
     for (int i = 0; i < nr_produse; i++)
         p.push_back(other.p[i]);
+    id_comanda++;
 }
 Comanda &Comanda::operator=(const Comanda &other)
 {
     if (this != &other)
     {
-        int nr_disc = 0, nr_vestim = 0;
-        float val_comanda = 0;
-        bool cerinte_respectate = true;
+        id_comanda++;
+        if (!p.empty())
+        {
+            for (int i = 0; i < p.size(); i++)
+                if (p[i] != nullptr)
+                    delete p[i];
+            p.clear();
+        }
         durata_solutionare = other.durata_solutionare;
         nr_produse = other.nr_produse;
 
-        for (int i = 0; i < nr_produse; i++) // Verific daca comanda poate fi procesata;
+        for (int i = 0; i < nr_produse; i++)
         {
-            if (typeid(other.p[i]).name() == "Vestimentatie")
-                nr_vestim++;
-            if (typeid(other.p[i]).name() == "Disc" || typeid(other.p[i]).name() == "Disc_Vint")
-            {
-                nr_disc++;
-            }
-            if (nr_disc >= 4 || nr_vestim >= 6)
-            {
-                cout << "Comanda nu poate fi plasata" << endl;
-                cout << "---Numarul maxim de obiecte depasit---" << endl;
-                cerinte_respectate = false;
-                break;
-            }
-            val_comanda = val_comanda + (other.p[i])->getPret_de_baza();
-            if (val_comanda > 100)
-            {
-                cout << "Comanda nu poate fi plasata" << endl;
-                cout << "---Valaore comanda a fost depasit (100)---" << endl;
-                cerinte_respectate = false;
-                break;
-            }
-        }
-        try
-        {
-            if (cerinte_respectate == false)
-            {
-                cout << "Comanda nu a putu fi alocata" << endl;
-
-                throw std::invalid_argument("Comenzile nu respecta cerintele necesare");
-            }
-
-            else
-            {
-                for (int i = 0; i < nr_produse; i++)
-                {
-                    p.push_back(other.p[i]);
-                }
-            }
-        }
-        catch (const std::invalid_argument &e)
-        {
-            std::cerr << "Caught invalid_argument error: " << e.what() << std::endl;
-        }
-        if (difftime(time(NULL), other.data_plasare) > durata_solutionare)
-        {
-            cout << "Comanda a depasit durata de solutionare" << endl;
-            throw std::invalid_argument("Timp prea lung");
-        }
-        else
-        {
-            data_plasare = other.data_plasare;
+            p.push_back(other.p[i]);
         }
     }
     return *this;
 }
 Comanda::~Comanda()
 {
-    for (Produs *produs : p)
-    {
-        delete produs;
-    }
+    for (int i = 0; i < p.size(); i++)
+        delete p[i];
+    p.clear();
     nr_comenzi--;
+}
+
+void Comanda::afisare() const
+{
+    cout << endl
+         << "=====================" << endl
+         << "Data plasare a comenzii: " << ctime(&data_plasare) << endl;
+    cout << "Data finalizare a comenzii: " << ctime(&durata_solutionare) << endl;
+
+    for (int i = 0; i < p.size(); i++)
+    {
+        p[i]->afisareInfo();
+    }
+    cout << "=====================";
+}
+
+Comanda::Comanda(Comanda &&other) noexcept
+    : data_plasare(other.data_plasare),
+      durata_solutionare(other.durata_solutionare),
+      nr_produse(other.nr_produse),
+      p(std::move(other.p))
+{
+
+    other.data_plasare = 0;
+    other.durata_solutionare = 0;
+    other.nr_produse = 0;
+    nr_comenzi++;
+}
+
+Comanda &Comanda::operator=(Comanda &&other) noexcept
+{
+    if (this != &other)
+    {
+        if (!p.empty())
+        {
+            for (int i = 0; i < p.size(); i++)
+                if (p[i] != nullptr)
+                    delete p[i];
+            p.clear();
+        }
+
+        data_plasare = other.data_plasare;
+        durata_solutionare = other.durata_solutionare;
+        nr_produse = other.nr_produse;
+        p = std::move(other.p);
+
+        other.data_plasare = 0;
+        other.durata_solutionare = 0;
+        other.nr_produse = 0;
+    }
+    return *this;
+}
+
+int Comanda::valoareComanda() const
+{
+    int valoare = 0;
+    bool vest = false, disc = true;
+
+    for (int i = 0; i < p.size(); i++)
+    {
+        valoare = valoare + p[i]->getPret();
+        if (typeid(*p[i]).name() == typeid(Vestimentatie).name() && vest == false)
+        {
+            vest = true;
+            valoare = valoare + 20;
+        }
+        if ((typeid(*p[i]).name() == typeid(Disc).name() || typeid(*p[i]).name() == typeid(Disc_Vint).name()) && disc == false)
+        {
+            disc = true;
+            valoare = valoare + 5;
+        }
+    }
+    return valoare;
+}
+
+int Comanda::getNrProduse() const
+{
+    return nr_produse;
+}
+
+bool Comanda::verificareStoc(vector<Produs *> &stoc)
+{
+    int produse_gasite = 0;
+
+    for (int i = 0; i < nr_produse; i++)
+    {
+        bool gasit = false;
+
+        for (int j = 0; j < stoc.size(); j++) // Explicit indexing for the second loop
+        {
+            if (*stoc[j] == *p[i]) // Compare dereferenced pointers
+            {
+                if (stoc[j]->getCantitate() > 0)
+                {
+                    stoc[j]->setCantitate(stoc[j]->getCantitate() - 1);
+                    produse_gasite++;
+                    gasit = true;
+                    break; // Stop searching after finding the product
+                }
+            }
+        }
+
+        if (!gasit) // If a product wasn't found, stop searching for the rest
+        {
+            return false;
+        }
+    }
+
+    return produse_gasite == nr_produse;
+}
+
+int Comanda::getID_comanda() const
+{
+    return id_comanda;
 }

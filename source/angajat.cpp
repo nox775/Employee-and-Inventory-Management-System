@@ -1,6 +1,7 @@
 #include "../headers/angajat.h"
 
 int Angajat::nr_angajati = 0;
+int Angajat::nr_opeatori = 0;
 
 Angajat::Angajat(string tip, int ID_var, time_t data_angajare_var, string nume_var, string prenume_var, string CNP_var) : Persoana(nume_var, prenume_var, CNP_var), ID(ID_var), tipAngajat(tip)
 {
@@ -15,6 +16,8 @@ Angajat::Angajat(string tip, int ID_var, time_t data_angajare_var, string nume_v
     }
 
     data_angajare = data_angajare_var;
+    if (tip == "Operator")
+        nr_opeatori++;
     nr_angajati++;
 }
 
@@ -98,6 +101,10 @@ void Angajat::Demisie()
 {
     cout << "Angajatul cu ID " << ID << " a parasit compania." << endl;
     nr_angajati--;
+    if (tipAngajat == "Operator")
+    {
+        nr_opeatori--;
+    }
 }
 
 Angajat::~Angajat() {};

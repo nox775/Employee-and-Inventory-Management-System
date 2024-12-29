@@ -23,5 +23,9 @@ public:
     void setNume(string);
     int *getDataNasterii() const;
 
+    string getNume() const;
+    string getPrenume() const;
+    string getCNP() const;
+
     virtual ~Persoana();
 };

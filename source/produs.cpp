@@ -44,3 +44,16 @@ int Produs::getCod() const
 {
     return cod;
 }
+
+bool operator==(const Produs &p1, const Produs &p2)
+{
+    if (p1.cod == p2.cod)
+        return true;
+    else
+        return false;
+}
+
+int Produs::getCantitate() const
+{
+    return cantiate;
+}

@@ -29,7 +29,7 @@ void initStoc(vector<Produs *> &stoc, string filename)
 
     int nr_produse_stoc;
     fin >> nr_produse_stoc;
-    fin.ignore(); // Ignoră newline-ul după numărul de produse
+    fin.ignore();
 
     Produs::nr_produse_stoc = nr_produse_stoc;
     int count_disc = 0, count_disc_vint = 0, count_vest = 0;

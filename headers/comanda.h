@@ -7,12 +7,14 @@
 #include <typeinfo>
 #include <ctime>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 class Comanda
 {
-    time_t data_plasare = time(NULL); // trebuie sa folosesti librarie speciala;
+    int id_comanda = 0;
+    time_t data_plasare = time(NULL);
     time_t durata_solutionare = 0;
     int nr_produse = 0;
     vector<Produs *> p;
@@ -24,4 +26,14 @@ public:
     Comanda(const Comanda &);
     Comanda &operator=(const Comanda &);
     ~Comanda();
+    Comanda(Comanda &&) noexcept;
+    Comanda &operator=(Comanda &&) noexcept;
+
+    int valoareComanda() const;
+    int getNrProduse() const;
+
+    void afisare() const;
+
+    bool verificareStoc(vector<Produs *> &);
+    int getID_comanda() const;
 };

@@ -11,21 +11,24 @@ int main()
 {
     // Citire date din fisier intr-un vector de angajati
     vector<Angajat> angajati;
+    vector<Operator> operatori;
     string fileName1 = "./data_in/info_angajati.in"; // Datele au fost generate cu AI
-    initAngajati(angajati, fileName1);
+    initAngajati(angajati, operatori, fileName1);
 
     vector<Produs *> stoc;
     string fileName2 = "./data_in/info_stoc.in"; // Datele au fost generate cu AI
     initStoc(stoc, fileName2);
 
     // Citire date din fisier intr-un vector de comenzi
-    //  vector<Comanda> comenzi;
-    //  string fileName3 = "./data_in/info_produse.in"; // Datele au fost generate cu AI
-    // initComenzi(comenzi, fileName3);
+    vector<Comanda> comenzi;
+    string fileName3 = "./data_in/info_comenzi.in"; // Datele au fost generate cu AI
+    initComenzi(comenzi, fileName3);
+
+    startOperatori(comenzi, operatori, stoc);
 
     // MENIU
-    bool meniu_functionare = true;
-    int optinune;
+    bool meniu_functionare = false;
+    int optiune;
 
     while (meniu_functionare != false)
     {
@@ -40,13 +43,13 @@ int main()
         cout << "0-Iesire meniu prinicipal" << endl;
         cout << "--------------" << endl;
 
-        cin >> optinune;
-        if (optinune == 0)
+        cin >> optiune;
+        if (optiune == 0)
         {
             cout << "Ati iesit din meniu principal" << endl;
-            break;
+            meniu_functionare = false;
         }
-        else if (optinune == 1) // MENIU GESTIONARE ANGAJATI
+        else if (optiune == 1) // MENIU GESTIONARE ANGAJATI
         {
             bool meniu = false;
             while (meniu == false)
@@ -91,7 +94,7 @@ int main()
                 }
             }
         }
-        else if (optinune == 2) // MENIU GESTUIONARE PRODUSE/STOC
+        else if (optiune == 2) // MENIU GESTUIONARE PRODUSE/STOC
         {
 
             bool meniu = false;
@@ -135,6 +138,37 @@ int main()
                 else if (optiune_secundara == 5) // Stergere produs din stoc;
                 {
                     stergereProdus(stoc);
+                }
+            }
+        }
+        else if (optiune == 3) // MENIU GESTUIONARE COMENZI
+        {
+
+            bool meniu = false;
+            while (meniu == false)
+            {
+                // adăugare, ștergere, modificare, afișare date produs, afișarea tuturor produselor din stoc
+                cout << "--------------" << endl;
+                cout << "Ce doriti sa faceti?" << endl;
+                cout << "--------------" << endl;
+                cout << "Afisare comenzi(1)" << endl;
+                cout << "Start ziua de lucru(2)" << endl;
+                cout << "--------------" << endl;
+                cout << "Intoarcere MENIU PRINCIPAL(0)" << endl;
+                cout << "--------------" << endl;
+
+                int optiune_secundara;
+                cin >> optiune_secundara;
+
+                if (optiune_secundara == 0) // Iesire din meniu stoc
+                    meniu = true;
+                else if (optiune_secundara == 1) // Afisare comenzi
+                {
+                    afisareComenzi(comenzi);
+                }
+                else if (optiune_secundara == 2) // Incepe munca operatorilor
+                {
+                    startOperatori(comenzi, operatori, stoc);
                 }
             }
         }

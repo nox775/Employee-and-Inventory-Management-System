@@ -49,7 +49,7 @@ time_t convertStringToTimeT(const std::string &dateStr)
     return std::mktime(&tm);
 }
 
-void initAngajati(vector<Angajat> &persoane, string filename)
+void initAngajati(vector<Angajat> &persoane, vector<Operator> &op, string filename)
 {
     ifstream fin(filename);
     if (!fin.is_open())
@@ -59,6 +59,8 @@ void initAngajati(vector<Angajat> &persoane, string filename)
     }
     int nr_angajati;
     fin >> nr_angajati;
+
+    queue<Comanda> empty; // o coada goala ca sa initializam operatorii
 
     for (int i = 0; i < nr_angajati; i++)
     {
@@ -77,6 +79,11 @@ void initAngajati(vector<Angajat> &persoane, string filename)
         time_t data_angajare = convertStringToTimeT(buffer_time);
 
         persoane.push_back(Angajat(tip, ID, data_angajare, nume, prenume, CNP));
+
+        if (tip == "Operator")
+        {
+            op.push_back(Operator(tip, ID, data_angajare, nume, prenume, CNP, empty, 0, 0, 0));
+        }
     }
     bool ok = verificare_functionare_magazin(persoane);
     if (ok == false)
