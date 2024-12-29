@@ -177,21 +177,21 @@ bool Comanda::verificareStoc(vector<Produs *> &stoc)
     {
         bool gasit = false;
 
-        for (int j = 0; j < stoc.size(); j++) // Explicit indexing for the second loop
+        for (int j = 0; j < stoc.size(); j++)
         {
-            if (*stoc[j] == *p[i]) // Compare dereferenced pointers
+            if (*stoc[j] == *p[i])
             {
                 if (stoc[j]->getCantitate() > 0)
                 {
                     stoc[j]->setCantitate(stoc[j]->getCantitate() - 1);
                     produse_gasite++;
                     gasit = true;
-                    break; // Stop searching after finding the product
+                    break;
                 }
             }
         }
 
-        if (!gasit) // If a product wasn't found, stop searching for the rest
+        if (!gasit)
         {
             return false;
         }

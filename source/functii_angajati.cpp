@@ -110,11 +110,11 @@ int getVarstaFromCNP(string CNP)
     luna = stoi(CNP.substr(3, 2));
     zi = stoi(CNP.substr(5, 2));
 
-    std::time_t t = std::time(nullptr); // Get current time
-    std::tm *now = std::localtime(&t);  // Convert time_t to std::tm (local time)
+    std::time_t t = std::time(nullptr);
+    std::tm *now = std::localtime(&t);
 
-    int ziua_curenta = now->tm_mday;    // Current day
-    int luna_curenta = now->tm_mon + 1; // Current month (tm_mon is 0-based)
+    int ziua_curenta = now->tm_mday;
+    int luna_curenta = now->tm_mon + 1;
     int anul_curent = now->tm_year + 1900;
 
     int varsta;

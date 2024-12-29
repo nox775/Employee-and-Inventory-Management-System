@@ -24,28 +24,24 @@ Angajat::Angajat(string tip, int ID_var, time_t data_angajare_var, string nume_v
 int Angajat::getVechime() const
 {
 
-    // Get the current time as a time_t
-    std::time_t t = std::time(nullptr); // Get current time
-    std::tm *now = std::localtime(&t);  // Convert time_t to std::tm (local time)
+    std::time_t t = std::time(nullptr);
+    std::tm *now = std::localtime(&t);
 
-    int ziua_curenta = now->tm_mday;       // Current day
-    int luna_curenta = now->tm_mon + 1;    // Current month (tm_mon is 0-based)
-    int anul_curent = now->tm_year + 1900; // Current year (tm_year is years since 1900)
+    int ziua_curenta = now->tm_mday;
+    int luna_curenta = now->tm_mon + 1;
+    int anul_curent = now->tm_year + 1900;
 
-    // Convert data_angajare (time_t) to std::tm
     std::tm *hireDate = std::localtime(&data_angajare);
 
-    // Extract hiring date components from hireDate (which is std::tm)
     int ziua_angajare = hireDate->tm_mday;
-    int luna_angajare = hireDate->tm_mon + 1;     // Adjust 0-based month
-    int anul_angajare = hireDate->tm_year + 1900; // Adjust year
+    int luna_angajare = hireDate->tm_mon + 1;
+    int anul_angajare = hireDate->tm_year + 1900;
 
     int vechime;
 
-    // Calculate seniority
     if (anul_curent == anul_angajare)
     {
-        return 0; // Same year as hiring, no seniority yet
+        return 0; //
     }
     else
     {
