@@ -61,6 +61,7 @@ void initComenzi(vector<Comanda> &c, string filename)
     fin >> nr_comenzi;
     fin.ignore();
     Comanda::nr_comenzi = nr_comenzi;
+    int id_comanda = 99;
 
     for (int k = 0; k < nr_comenzi; k++)
     {
@@ -74,6 +75,7 @@ void initComenzi(vector<Comanda> &c, string filename)
         int nr_produse;
         fin >> nr_produse;
         fin.ignore();
+        id_comanda++;
 
         vector<Produs *> p;
         for (int i = 0; i < nr_produse; i++)
@@ -134,7 +136,7 @@ void initComenzi(vector<Comanda> &c, string filename)
             }
         }
 
-        Comanda temp = Comanda(data_plasare, durata_solutionare, nr_produse, p);
+        Comanda temp = Comanda(id_comanda, data_plasare, durata_solutionare, nr_produse, p);
 
         c.push_back(move(temp));
     }
@@ -168,61 +170,83 @@ int cauta_op_ocupare_min(vector<Operator> op)
     return index_min;
 }
 
-void startOperatori(vector<Comanda> c, vector<Operator> &op, vector<Produs *> stoc)
+void startOperatori(vector<Comanda> &c, vector<Operator> &op, vector<Produs *> &stoc)
 {
-    int index_min = 0;
-
-    for (int i = 0; i < c.size(); i++) // itereaza prin comenzi
+    if (op.empty())
     {
-        bool disponibilitate = c[i].verificareStoc(stoc); // verifica daca produsele din comanda sunt in stoc
+        cout << "Nu exista operatori disponibili pentru procesarea comenzilor.\n";
+        return;
+    }
+    int comenzi_procesate = 0;
 
-        cout << "PROCESARE COMANDA CU NUMARUL: " << i << endl;
+    for (int i = 0; i < c.size(); i++)
+    {
 
-        if (disponibilitate == true) // daca sunt in stoc produsele se executa
+        if (c[i].verificareStoc(stoc))
         {
             bool comanda_efectuata = false;
 
-            while (comanda_efectuata == false)
+            while (!comanda_efectuata)
             {
-                cout << "INX" << endl;
-                index_min = cauta_op_ocupare_min(op); // cauta operatorul care este cel mai liber
+                int index_min = cauta_op_ocupare_min(op);
 
-                cout << "INCEPUT-----COMANDA CU NR:  " << index_min << endl;
-
-                if (op[index_min].getComenzi_in_lucru() == 3) // toti operatorii sunt ocupati
+                if (op[index_min].getComenzi_in_lucru() == 3)
                 {
-                    cout << "Toti operatorii sunt ocupati in acest moment.Comanda va fi pus in asteptare." << endl;
+                    cout << "Toti operatorii sunt ocupati in acest moment. Comanda este in asteptare." << endl;
 
                     bool solutionare = false;
-                    while (solutionare == false) // asteapta ca operatorii sa fie disponibili
+                    while (!solutionare)
                     {
-                        cout << "Exista operatori liberi? DA(1) NU(0): " << endl;
+                        cout << "Exista operatori liberi? DA(1) NU(0): ";
                         cin >> solutionare;
 
-                        if (solutionare == true)
+                        if (solutionare)
                         {
                             int index_liber = solicitare_eliberare(op);
-                            op[index_liber].solutionareComanda();
+                            if (index_liber >= 0 && index_liber < op.size())
+                            {
+                                op[index_liber].solutionareComanda();
+                                comenzi_procesate++;
+                            }
+                            else
+                            {
+                                cout << "Index invalid. Verificati ID-ul operatorului." << endl;
+                            }
                         }
                     }
                 }
                 else
                 {
                     op[index_min].adaugaComanda(c[i]);
-                    //
+                    cout << endl
+                         << "=====================" << endl;
+
+                    c[i].printData_plasare();
+                    c[i].printData_solutionare();
+
+                    cout << "ID COMANDA: " << c[i].getID_comanda() << endl
+                         << "Valoare comanda: " << c[i].valoareComanda() << endl
+                         << " A FOST ASIGNATA CATRE OPERATORUL CU ID: "
+                         << op[index_min].getID() << endl;
+                    cout << endl
+                         << "=====================" << endl;
+
                     comanda_efectuata = true;
-                    cout << "Schimbat comanda" << endl;
                 }
-                cout << "Am terminat" << endl;
             }
         }
         else
         {
-            cout << "Comanda nu s-a putute efectua. Produsele nu sunt in stoc. ID comanda: " << c[i].getID_comanda() << endl;
+            cout << "Comanda cu ID " << c[i].getID_comanda() << " nu s-a putut efectua. Produsele nu sunt in stoc." << endl;
         }
-
-        //  op[i].afisare();
-
-        cout << "Am iesit din bula" << endl;
+    }
+    for (int i = 0; i < op.size(); i++) // finalizam comenziile
+    {
+        while (op[i].getComenzi_in_lucru() != 0)
+        {
+            cout << endl
+                 << "=====================" << endl;
+            op[i].solutionareComanda();
+        }
     }
 }

@@ -22,7 +22,7 @@ class Comanda
 public:
     static int nr_comenzi;
     Comanda() = default;
-    Comanda(time_t, time_t, int, vector<Produs *>);
+    Comanda(int, time_t, time_t, int, vector<Produs *>);
     Comanda(const Comanda &);
     Comanda &operator=(const Comanda &);
     ~Comanda();
@@ -31,6 +31,9 @@ public:
 
     int valoareComanda() const;
     int getNrProduse() const;
+
+    void printData_plasare() const;
+    void printData_solutionare() const;
 
     void afisare() const;
 

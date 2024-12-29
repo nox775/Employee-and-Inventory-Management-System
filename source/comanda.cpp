@@ -2,10 +2,9 @@
 
 int Comanda::nr_comenzi = 0;
 
-Comanda::Comanda(time_t data_plasare_v, time_t durata_solutionare_v, int nr_produse_v, vector<Produs *> p_v)
-    : durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v), data_plasare(data_plasare_v)
+Comanda::Comanda(int id_v, time_t data_plasare_v, time_t durata_solutionare_v, int nr_produse_v, vector<Produs *> p_v)
+    : id_comanda(id_v), durata_solutionare(durata_solutionare_v), nr_produse(nr_produse_v), data_plasare(data_plasare_v)
 {
-    id_comanda++;
     nr_comenzi++;
     int nr_disc = 0, nr_vestim = 0;
     float val_comanda = 0;
@@ -48,7 +47,6 @@ Comanda::Comanda(time_t data_plasare_v, time_t durata_solutionare_v, int nr_prod
     {
         std::cerr << "Eroare: " << e.what() << std::endl;
     }
-    id_comanda++;
 }
 
 Comanda::Comanda(const Comanda &other)
@@ -56,16 +54,16 @@ Comanda::Comanda(const Comanda &other)
     data_plasare = other.data_plasare;
     durata_solutionare = other.durata_solutionare;
     nr_produse = other.nr_produse;
+    id_comanda = other.id_comanda;
 
     for (int i = 0; i < nr_produse; i++)
         p.push_back(other.p[i]);
-    id_comanda++;
 }
 Comanda &Comanda::operator=(const Comanda &other)
 {
     if (this != &other)
     {
-        id_comanda++;
+        id_comanda = other.id_comanda;
         if (!p.empty())
         {
             for (int i = 0; i < p.size(); i++)
@@ -97,6 +95,7 @@ void Comanda::afisare() const
          << "=====================" << endl
          << "Data plasare a comenzii: " << ctime(&data_plasare) << endl;
     cout << "Data finalizare a comenzii: " << ctime(&durata_solutionare) << endl;
+    cout << "ID COMANDA: " << id_comanda << endl;
 
     for (int i = 0; i < p.size(); i++)
     {
@@ -109,9 +108,10 @@ Comanda::Comanda(Comanda &&other) noexcept
     : data_plasare(other.data_plasare),
       durata_solutionare(other.durata_solutionare),
       nr_produse(other.nr_produse),
-      p(std::move(other.p))
+      p(std::move(other.p)),
+      id_comanda(other.id_comanda)
 {
-
+    other.id_comanda = 0;
     other.data_plasare = 0;
     other.durata_solutionare = 0;
     other.nr_produse = 0;
@@ -134,10 +134,12 @@ Comanda &Comanda::operator=(Comanda &&other) noexcept
         durata_solutionare = other.durata_solutionare;
         nr_produse = other.nr_produse;
         p = std::move(other.p);
+        id_comanda = other.id_comanda;
 
         other.data_plasare = 0;
         other.durata_solutionare = 0;
         other.nr_produse = 0;
+        other.id_comanda = 0;
     }
     return *this;
 }
@@ -203,4 +205,13 @@ bool Comanda::verificareStoc(vector<Produs *> &stoc)
 int Comanda::getID_comanda() const
 {
     return id_comanda;
+}
+
+void Comanda::printData_plasare() const
+{
+    cout << "Data plasare a comenzii: " << ctime(&data_plasare) << endl;
+}
+void Comanda::printData_solutionare() const
+{
+    cout << "Data  la care trbuie finalizata comanda: " << ctime(&durata_solutionare) << endl;
 }

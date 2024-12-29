@@ -102,3 +102,11 @@ string Persoana::getCNP() const
 {
     return CNP;
 }
+
+ostream &operator<<(ostream &out, const Persoana &other)
+{
+    out << "Nume: " << other.nume << endl;
+    out << "Prenume: " << other.prenume << endl;
+    out << "CNP: " << other.CNP << endl;
+    return out;
+}

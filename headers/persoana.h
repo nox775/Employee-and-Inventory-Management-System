@@ -27,5 +27,7 @@ public:
     string getPrenume() const;
     string getCNP() const;
 
+    friend ostream &operator<<(ostream &, const Persoana &);
+
     virtual ~Persoana();
 };

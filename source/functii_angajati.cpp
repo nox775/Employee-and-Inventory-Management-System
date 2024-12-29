@@ -60,7 +60,8 @@ void initAngajati(vector<Angajat> &persoane, vector<Operator> &op, string filena
     int nr_angajati;
     fin >> nr_angajati;
 
-    queue<Comanda> empty; // o coada goala ca sa initializam operatorii
+    // queue<Comanda> empty; // o coada goala ca sa initializam operatorii
+    queue<int> empty;
 
     for (int i = 0; i < nr_angajati; i++)
     {
@@ -82,7 +83,7 @@ void initAngajati(vector<Angajat> &persoane, vector<Operator> &op, string filena
 
         if (tip == "Operator")
         {
-            op.push_back(Operator(tip, ID, data_angajare, nume, prenume, CNP, empty, 0, 0, 0));
+            op.push_back(Operator(empty, tip, ID, data_angajare, nume, prenume, CNP, 0, 0, 0));
         }
     }
     bool ok = verificare_functionare_magazin(persoane);

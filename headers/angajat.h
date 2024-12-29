@@ -31,4 +31,6 @@ public:
     int getVechime() const;         // vechimea unui angajat in firma
     string getTip() const;
     ~Angajat();
+
+    friend ostream &operator<<(ostream &, const Angajat &);
 };

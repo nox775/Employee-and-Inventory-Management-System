@@ -3,6 +3,7 @@
 #include "./headers/functii_angajati.h"
 #include "./headers/functii_comenzi.h"
 #include "./headers/functii_stoc.h"
+#include "./headers/functii_raport.h"
 #include <fstream>
 #include <limits>
 
@@ -25,7 +26,9 @@ int main()
     string fileName3 = "./data_in/info_comenzi.in"; // Datele au fost generate cu AI
     initComenzi(comenzi, fileName3);
 
-    // startOperatori(comenzi, operatori, stoc);
+    string raport_file1 = "./data_out/ang_cele_mai_multe_comenzi.csv";
+    string raport_file2 = "./data_out/top3_ang_val.csv";
+    string raport_file3 = "./data_out/top3_ang_sal.csv";
 
     // MENIU
     bool meniu_functionare = true;
@@ -193,7 +196,7 @@ int main()
                     continue;
                 }
 
-                if (optiune_secundara == 0) // Iesire din meniu stoc
+                if (optiune_secundara == 0) // Iesire din meniu comenzi
                     meniu = true;
                 else if (optiune_secundara == 1) // Afisare comenzi
                 {
@@ -205,7 +208,49 @@ int main()
                 }
             }
         }
-    }
+        else if (optiune == 4)
+        {
+            bool meniu = false;
+            while (meniu == false)
+            {
 
+                cout << "--------------" << endl;
+                cout << "Ce doriti sa faceti?" << endl;
+                cout << "--------------" << endl;
+                cout << "Afisarea angajatului cu cele mai multe comenzi(1)" << endl;
+                cout << "Afisarea top 3 angajați care au gestionat cele mai valoroase comenzi (2)" << endl;
+                cout << "Afisarea top 3 angajați cu cel mai mare salariu în luna curentă " << endl;
+                cout << "--------------" << endl;
+                cout << "Intoarcere MENIU PRINCIPAL(0)" << endl;
+                cout << "--------------" << endl;
+
+                int optiune_secundara;
+                cin >> optiune_secundara;
+
+                if (cin.fail())
+                {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Optiune invalida! Te rog sa alegi o optiune valida." << endl;
+                    continue;
+                }
+
+                if (optiune_secundara == 0) // Iesire din meniu stoc
+                    meniu = true;
+                else if (optiune_secundara == 1) //
+                {
+                    afisare_angj_cele_mai_multe_comenzi(operatori, raport_file1);
+                }
+                else if (optiune_secundara == 2)
+                {
+                    afisare_top3_angj_comenzi(operatori, raport_file2);
+                }
+                else if (optiune_secundara == 3)
+                {
+                    afisare_top3_salarii(operatori, raport_file3);
+                }
+            }
+        }
+    }
     return 0;
 }

@@ -12,4 +12,4 @@ void afisareComenzi(vector<Comanda>);
 
 int solicitare_eliberare(vector<Operator>);
 int cauta_op_ocupare_min(vector<Operator>);
-void startOperatori(vector<Comanda>, vector<Operator> &, vector<Produs *>);
+void startOperatori(vector<Comanda> &, vector<Operator> &, vector<Produs *> &);

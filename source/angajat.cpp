@@ -114,3 +114,16 @@ string Angajat::getTip() const
 {
     return tipAngajat;
 }
+
+ostream &operator<<(ostream &out, const Angajat &other)
+{
+    out << "--------------" << endl;
+    out << (Persoana)other;
+    out << "Functie: " << other.tipAngajat << endl;
+    out << "ID angajat: " << other.ID << endl;
+
+    out << "Salariu: " << other.getSalariu() << endl;
+    out << "--------------" << endl;
+
+    return out;
+}
