@@ -134,7 +134,7 @@ int getVarstaFromCNP(string CNP)
     return varsta;
 }
 
-void addAngajat(vector<Angajat> &employ)
+void addAngajat(vector<Angajat> &employ, vector<Operator> &op)
 {
     cout << "Va rugam sa introduceti urmatoarele date pentru angajat" << endl;
     string nume, prenume;
@@ -158,6 +158,12 @@ void addAngajat(vector<Angajat> &employ)
     time_t data_angajare = time(nullptr);
 
     employ.push_back(Angajat(tip, ID, data_angajare, nume, prenume, CNP));
+
+    if (tip == "Operator")
+    {
+        queue<int> empty;
+        op.push_back(Operator(empty, tip, ID, data_angajare, nume, prenume, CNP, 0, 0, 0));
+    }
 }
 
 void afisareAngajat(vector<Angajat> employ)
@@ -165,7 +171,7 @@ void afisareAngajat(vector<Angajat> employ)
     cout << "Scrie ID-ul angajatului caruia doresti sa afisezi datele" << endl;
     int ID;
     cin >> ID;
-    for (int i = 0; i < Angajat::nr_angajati; i++)
+    for (int i = 0; i < employ.size(); i++)
     {
         if (employ[i].getID() == ID)
         {
@@ -177,33 +183,41 @@ void afisareAngajat(vector<Angajat> employ)
 
 void afisareALL_Angajat(vector<Angajat> employ)
 {
-    for (int i = 0; i < Angajat::nr_angajati; i++)
+    for (int i = 0; i < employ.size(); i++)
         employ[i].afisare();
 }
 
-void modif_date_angajat(vector<Angajat> &employ)
+void modif_date_angajat(vector<Angajat> &employ, vector<Operator> &op)
 {
     cout << "Scrie ID-ul angajatului caruie doresti sa-i modifici numele" << endl;
     int ID;
+    string nume;
     cin >> ID;
-    for (int i = 0; i < Angajat::nr_angajati; i++)
+    for (int i = 0; i < employ.size(); i++)
         if (ID == employ[i].getID())
         {
             cout << "Scrie nume nou" << endl;
-            string nume;
             cin >> nume;
             employ[i].setNume(nume);
             break;
         }
+    for (int i = 0; i < op.size(); i++)
+    {
+        if (ID == op[i].getID())
+        {
+            op[i].setNume(nume);
+            break;
+        }
+    }
 }
 
-void stergereAngajat(vector<Angajat> &employ)
+void stergereAngajat(vector<Angajat> &employ, vector<Operator> &op)
 {
 
     cout << "Scrie ID-ul angajatului care a demisionat s-au l-ai concediat" << endl;
     int ID;
     cin >> ID;
-    for (int i = 0; i < Angajat::nr_angajati; i++)
+    for (int i = 0; i < employ.size(); i++)
         if (ID == employ[i].getID())
         {
             employ[i].Demisie();
@@ -221,11 +235,10 @@ void stergereAngajat(vector<Angajat> &employ)
             std::cerr << e.what() << '\n';
         }
     }
-}
 
-void actualizareSalariu(vector<Angajat> &a, vector<Operator> &op)
-{
-    for (int i = 0; i < a.size(); i++)
-    {
-    }
+    for (int i = 0; i < op.size(); i++)
+        if (ID == op[i].getID())
+        {
+            op.erase(op.begin() + i);
+        }
 }

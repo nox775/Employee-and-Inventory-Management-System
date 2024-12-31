@@ -206,7 +206,8 @@ void startOperatori(vector<Comanda> &c, vector<Operator> &op, vector<Produs *> &
                             if (index_liber >= 0 && index_liber < op.size())
                             {
                                 op[index_liber].solutionareComanda();
-                                //    comenzi_procesate++;
+                                solutionare = true;
+                                break;
                             }
                             else
                             {

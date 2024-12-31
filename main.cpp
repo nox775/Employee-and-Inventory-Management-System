@@ -67,7 +67,6 @@ int main()
             while (meniu == false)
             {
 
-                actualizareSalariu(angajati, operatori);
                 // adăugare, ștergere, modificare, afișare date angajat, afișarea tuturor angajaților
                 cout << "Ce doriti sa faceti?" << endl;
                 cout << "--------------" << endl;
@@ -96,7 +95,7 @@ int main()
                 else if (optiune_secundara == 1) // Adaugare Angajat;
                 {
 
-                    addAngajat(angajati);
+                    addAngajat(angajati, operatori);
                 }
                 else if (optiune_secundara == 2) // Afisare date angajat
                 {
@@ -108,11 +107,11 @@ int main()
                 }
                 else if (optiune_secundara == 4) // Schimbare nume angjat
                 {
-                    modif_date_angajat(angajati);
+                    modif_date_angajat(angajati, operatori);
                 }
                 else if (optiune_secundara == 5) // scoatere din firma a unui angajat
                 {
-                    stergereAngajat(angajati);
+                    stergereAngajat(angajati, operatori);
                 }
             }
         }

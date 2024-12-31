@@ -20,7 +20,6 @@ public:
 
     virtual void afisareInfo();
     void setCantitate(int);
-    // stergere ? - mai vedem
 
     virtual float getPret() = 0;
     float getPret_de_baza();

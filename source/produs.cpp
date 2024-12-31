@@ -6,7 +6,7 @@ Produs::Produs(string nume_var, int cantitate_var, int cod_var, float pret_baza_
 
 Produs::~Produs() {};
 
-void Produs::afisareInfo() const
+void Produs::afisareInfo()
 {
     cout << "------------------------" << endl;
     cout << "Nume produs: " << nume << endl;

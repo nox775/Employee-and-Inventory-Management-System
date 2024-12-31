@@ -1,4 +1,51 @@
+12
+24 12 2024 15:30:00
+26 12 2024 15:30:00
+5
+Disc,10,120.0,100,Rock,Sony Music,15 11 2023,The Beatles,Abbey Road
+Disc,8,100.0,101,Pop,Universal Music,10 9 2022,Taylor Swift,Midnights
+Disc,12,150.0,102,Jazz,Blue Note,15 6 1960,Miles Davis,Kind of Blue
+Vestimentatie,5,200.0,103,Negru,Nike,Tricou
+Vestimentatie,3,150.0,104,Albastru,Adidas,Jachetă
+25 12 2024 10:00:00
+27 12 2024 10:00:00
+5
+Disc,3,130.0,105,Metal,Roadrunner Records,12 9 2008,Slipknot,All Hope Is Gone
+Disc,4,110.0,106,Hip-Hop,Aftermath,25 6 2021,Eminem,Kamikaze
+Disc_Vint,5,250.0,107,Rock,Atlantic Records,15 6 1970,Pink Floyd,The Dark Side of the Moon,4.5,true
+Vestimentatie,8,120.0,108,Roșu,Puma,Pantaloni
+Vestimentatie,2,300.0,109,Alb,Gucci,Palton
+26 12 2024 08:45:00
+28 12 2024 08:45:00
+4
+Disc,6,200.0,110,Rock,Atlantic Records,8 11 1971,Led Zeppelin,IV
+Disc,4,180.0,111,Pop,Columbia Records,30 11 1982,Michael Jackson,Thriller
+Vestimentatie,7,90.0,112,Verde,H&M,Cămașă
+Vestimentatie,5,100.0,113,Negru,Zara,Tricou
+27 12 2024 12:00:00
+29 12 2024 12:00:00
+4
+Disc,5,180.0,114,Pop,Warner Bros,23 3 1999,Madonna,Like a Prayer
+Disc_Vint,3,300.0,115,Rock,Columbia Records,1 5 1969,The Rolling Stones,Let It Bleed,3.2,false
+Vestimentatie,10,150.0,116,Bej,Levi's,Jeans
+Vestimentatie,5,220.0,117,Albastru,Tommy Hilfiger,Jachetă
+28 12 2024 09:30:00
+30 12 2024 09:30:00
 6
+Disc,8,130.0,118,Metal,Nuclear Blast,15 7 2001,Metallica,St. Anger
+Disc_Vint,6,200.0,119,Pop,Universal Music,13 7 1985,Wham!,Make It Big,4.0,true
+Disc,7,160.0,120,Rock,EMI,21 9 1979,The Clash,London Calling
+Vestimentatie,4,120.0,121,Negru,H&M,Tricou
+Vestimentatie,6,130.0,122,Verde,Puma,Pantaloni
+Vestimentatie,4,180.0,123,Alb,Zara,Jachetă
+29 12 2024 14:00:00
+31 12 2024 14:00:00
+5
+Disc_Vint,3,350.0,124,Rock,Atlantic Records,15 9 1975,Queen,A Night at the Opera,4.8,true
+Disc,5,200.0,125,Pop,Parlophone,23 11 2004,Coldplay,Love
+Disc,4,140.0,126,Metal,Metal Blade Records,12 3 2006,Avenged Sevenfold,The Rev
+Vestimentatie,10,100.0,127,Roșu,Nike,Tricou
+Vestimentatie,2,250.0,128,Negru,Adidas,Palton
 24 12 2024 15:30:00
 26 12 2024 15:30:00
 5

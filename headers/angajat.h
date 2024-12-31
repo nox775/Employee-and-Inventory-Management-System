@@ -30,6 +30,7 @@ public:
     virtual int getSalariu() const; // returneaza salariul unui angajat
     int getVechime() const;         // vechimea unui angajat in firma
     string getTip() const;
+
     ~Angajat();
 
     friend ostream &operator<<(ostream &, const Angajat &);

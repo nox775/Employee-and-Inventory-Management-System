@@ -9,13 +9,13 @@ using namespace std;
 
 bool verificare_functionare_magazin(vector<Angajat>);
 static time_t convertStringToTimeT(const string &);
+
 void initAngajati(vector<Angajat> &, vector<Operator> &, string);
-void addAngajat(vector<Angajat> &);
+void addAngajat(vector<Angajat> &, vector<Operator> &);
+
 int getVarstaFromCNP(string);
 void afisareAngajat(vector<Angajat>);
 
 void afisareALL_Angajat(vector<Angajat>);
-void modif_date_angajat(vector<Angajat> &);
-void stergereAngajat(vector<Angajat> &);
-
-void actualizareSalariu(vector<Angajat> &, vector<Operator> &);
+void modif_date_angajat(vector<Angajat> &, vector<Operator> &);
+void stergereAngajat(vector<Angajat> &, vector<Operator> &);
