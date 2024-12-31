@@ -22,7 +22,7 @@ void Produs::setCantitate(int cantitate_nou)
         if (cantitate_nou >= 0)
             cantiate = cantitate_nou;
         else
-            throw std::invalid_argument("Cantiatea trebuie sa fie pzoitiva");
+            throw std::invalid_argument("Cantiatea trebuie sa fie pozitiva");
     }
     catch (const exception &e)
     {

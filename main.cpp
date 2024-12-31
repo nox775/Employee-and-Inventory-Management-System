@@ -66,6 +66,8 @@ int main()
             bool meniu = false;
             while (meniu == false)
             {
+
+                actualizareSalariu(angajati, operatori);
                 // adăugare, ștergere, modificare, afișare date angajat, afișarea tuturor angajaților
                 cout << "Ce doriti sa faceti?" << endl;
                 cout << "--------------" << endl;
@@ -219,7 +221,7 @@ int main()
                 cout << "--------------" << endl;
                 cout << "Afisarea angajatului cu cele mai multe comenzi(1)" << endl;
                 cout << "Afisarea top 3 angajați care au gestionat cele mai valoroase comenzi (2)" << endl;
-                cout << "Afisarea top 3 angajați cu cel mai mare salariu în luna curentă " << endl;
+                cout << "Afisarea top 3 angajați cu cel mai mare salariu în luna curentă (3)" << endl;
                 cout << "--------------" << endl;
                 cout << "Intoarcere MENIU PRINCIPAL(0)" << endl;
                 cout << "--------------" << endl;

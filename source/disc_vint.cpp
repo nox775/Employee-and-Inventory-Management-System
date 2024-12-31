@@ -30,7 +30,7 @@ float Disc_Vint::getPret()
     return pret;
 }
 
-void Disc_Vint::afisareInfo() const
+void Disc_Vint::afisareInfo()
 {
     Disc::afisareInfo();
     cout << "Raritate: " << raritate << endl;
@@ -38,6 +38,7 @@ void Disc_Vint::afisareInfo() const
         cout << "Discul este mint" << endl;
     else
         cout << "Discul nu este mint" << endl;
+    PretFinal();
 }
 void Disc_Vint::PretFinal()
 {

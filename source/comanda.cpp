@@ -147,21 +147,9 @@ Comanda &Comanda::operator=(Comanda &&other) noexcept
 int Comanda::valoareComanda() const
 {
     int valoare = 0;
-    bool vest = false, disc = true;
-
     for (int i = 0; i < p.size(); i++)
     {
         valoare = valoare + p[i]->getPret();
-        if (typeid(*p[i]).name() == typeid(Vestimentatie).name() && vest == false)
-        {
-            vest = true;
-            valoare = valoare + 20;
-        }
-        if ((typeid(*p[i]).name() == typeid(Disc).name() || typeid(*p[i]).name() == typeid(Disc_Vint).name()) && disc == false)
-        {
-            disc = true;
-            valoare = valoare + 5;
-        }
     }
     return valoare;
 }

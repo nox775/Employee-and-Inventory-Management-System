@@ -20,11 +20,14 @@ Operator::Operator(queue<int> id_comenzi_v, string tip, int ID_var, time_t data_
 
 void Operator::afisare() const
 {
-    cout << "Operatorul ID: " << ID << endl
-         << "Nume: " << nume << endl
-         << "Prenume: " << prenume << endl
-         << "Comenzi in lucru: " << comenzi_in_lucru << endl
-         << endl;
+    Persoana::afisare();
+    cout << "Functie: " << tipAngajat << endl;
+    cout << "ID angajat: " << ID << endl;
+    cout << "Salariu: " << (this)->getSalariu() << endl;
+    cout << "--------------" << endl;
+    cout << "Comenzi in lucru: " << comenzi_in_lucru << endl;
+    cout << "Comenzi efectuate: " << comenzi_procesate << endl;
+    cout << "Valoare comenzi efectuate: " << valoare_comenzi_procesate << endl;
 
     cout << "ID-ul comenzilor pe care operatorul le proceseaza: ";
 
@@ -104,10 +107,12 @@ int Operator::getComenzi_procesate() const
 }
 ostream &operator<<(ostream &out, const Operator &other)
 {
+    tm *local_time = localtime(&other.data_angajare);
+
     out << other.ID << ",";
     out << other.nume << ",";
     out << other.prenume << ",";
-    out << ctime(&other.data_angajare) << ",";
+    out << put_time(local_time, "%d %m %Y") << ",";
     out << other.getSalariu() << ",";
     out << other.comenzi_procesate << ",";
     out << other.valoare_comenzi_procesate << endl;

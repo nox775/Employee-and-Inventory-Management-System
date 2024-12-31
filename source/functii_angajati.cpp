@@ -222,3 +222,10 @@ void stergereAngajat(vector<Angajat> &employ)
         }
     }
 }
+
+void actualizareSalariu(vector<Angajat> &a, vector<Operator> &op)
+{
+    for (int i = 0; i < a.size(); i++)
+    {
+    }
+}

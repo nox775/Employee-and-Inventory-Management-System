@@ -16,7 +16,7 @@ public:
 
     float getPret();
 
-    void afisareInfo() const;
+    void afisareInfo();
     void PretFinal();
 
     ~Disc();

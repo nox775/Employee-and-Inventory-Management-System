@@ -9,16 +9,15 @@ Angajat::Angajat(string tip, int ID_var, time_t data_angajare_var, string nume_v
     {
         if (this->getVarsta() < 18)
             throw std::invalid_argument("Persoana nu are 18 ani");
+        data_angajare = data_angajare_var;
+        if (tip == "Operator")
+            nr_opeatori++;
+        nr_angajati++;
     }
     catch (const std::invalid_argument &e)
     {
         std::cerr << "Caught invalid_argument error: " << e.what() << std::endl;
     }
-
-    data_angajare = data_angajare_var;
-    if (tip == "Operator")
-        nr_opeatori++;
-    nr_angajati++;
 }
 
 int Angajat::getVechime() const

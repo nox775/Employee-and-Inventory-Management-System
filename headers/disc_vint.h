@@ -10,7 +10,7 @@ public:
     Disc_Vint() = default;
     Disc_Vint(string, int, int, float, string, string, time_t, string, string, float, bool);
 
-    void afisareInfo() const;
+    void afisareInfo();
     void PretFinal();
     ~Disc_Vint();
 

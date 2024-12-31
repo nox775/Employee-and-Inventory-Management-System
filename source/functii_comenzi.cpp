@@ -177,7 +177,7 @@ void startOperatori(vector<Comanda> &c, vector<Operator> &op, vector<Produs *> &
         cout << "Nu exista operatori disponibili pentru procesarea comenzilor.\n";
         return;
     }
-    int comenzi_procesate = 0;
+    //   int comenzi_procesate = 0;
 
     for (int i = 0; i < c.size(); i++)
     {
@@ -206,7 +206,7 @@ void startOperatori(vector<Comanda> &c, vector<Operator> &op, vector<Produs *> &
                             if (index_liber >= 0 && index_liber < op.size())
                             {
                                 op[index_liber].solutionareComanda();
-                                comenzi_procesate++;
+                                //    comenzi_procesate++;
                             }
                             else
                             {

@@ -12,7 +12,7 @@ public:
     Vestimentatie(string, int, int, float, string, string, string);
     ~Vestimentatie();
 
-    void afisareInfo() const;
+    void afisareInfo();
     void PretFinal();
 
     float getPret();

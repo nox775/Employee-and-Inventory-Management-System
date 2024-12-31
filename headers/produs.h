@@ -18,7 +18,7 @@ public:
     Produs() = default;
     Produs(string, int, int, float);
 
-    virtual void afisareInfo() const;
+    virtual void afisareInfo();
     void setCantitate(int);
     // stergere ? - mai vedem
 
@@ -31,5 +31,5 @@ public:
     friend bool operator==(const Produs &, const Produs &);
     int getCantitate() const;
 
-        virtual ~Produs();
+    virtual ~Produs();
 };

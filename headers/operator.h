@@ -1,6 +1,7 @@
 #include "angajat.h"
 #include "comanda.h"
 #include <queue>
+#include <iomanip>
 #pragma once
 
 class Operator : public Angajat

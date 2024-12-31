@@ -17,3 +17,5 @@ void afisareAngajat(vector<Angajat>);
 void afisareALL_Angajat(vector<Angajat>);
 void modif_date_angajat(vector<Angajat> &);
 void stergereAngajat(vector<Angajat> &);
+
+void actualizareSalariu(vector<Angajat> &, vector<Operator> &);
