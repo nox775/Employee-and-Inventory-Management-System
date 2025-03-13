@@ -17,6 +17,19 @@ This application is a console-based management system designed to handle employe
 │   ├── functii_comenzi.h
 │   ├── functii_stoc.h
 │   ├── functii_raport.h
+├── source/
+│   ├── angajat.cpp
+│   ├── persoana.cpp
+│   ├── functii_angajati.cpp
+│   ├── functii_stoc.cpp
+│   ├── comanda.cpp
+│   ├── disc_vint.cpp
+│   ├── disc.cpp
+│   ├── produs.cpp
+│   ├── vestimentatie.cpp
+│   ├── functii_comenzi.cpp
+│   ├── operator.cpp
+│   ├── functii_raport.cpp
 ├── data_in/
 │   ├── info_angajati.in
 │   ├── info_stoc.in
@@ -26,6 +39,7 @@ This application is a console-based management system designed to handle employe
 │   ├── top3_ang_val.csv
 │   ├── top3_ang_sal.csv
 ├── main.cpp
+├── Makefile
 ```
 
 ## Installation & Compilation
@@ -34,14 +48,20 @@ This application is a console-based management system designed to handle employe
 - Standard C++ libraries
 
 ### Compilation Command
-To compile the application, use the following command:
+To compile the application, use the Makefile:
 ```sh
-g++ -o management_system main.cpp -Iheaders
+make
 ```
 
 ### Running the Application
 ```sh
-./management_system
+./magazin
+```
+
+### Cleaning Up
+To remove the compiled binary:
+```sh
+make clean
 ```
 
 ## Usage Guide
